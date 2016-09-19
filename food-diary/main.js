@@ -7,6 +7,23 @@ UserDishes = new Mongo.Collection('userDishes');
 //fields for userDishes: dish name, tried counter, want to try, favourite, comments
 
 if(Meteor.isClient) {
+	Template.login.events({
+    'click #facebook-login': function(event) {
+        Meteor.loginWithFacebook({}, function(err){
+            if (err) {
+                throw new Meteor.Error("Facebook login failed");
+            }
+        });
+    },
+ 
+    'click #logout': function(event) {
+        Meteor.logout(function(err){
+            if (err) {
+                throw new Meteor.Error("Logout failed");
+            }
+        })
+    }
+});
 
 
 }
@@ -27,24 +44,8 @@ if(Meteor.isServer) {
 }
 
 Meteor.methods({
-//Facebook login method calls
-Template.login.events({
-    'click #facebook-login': function(event) {
-        Meteor.loginWithFacebook({}, function(err){
-            if (err) {
-                throw new Meteor.Error("Facebook login failed");
-            }
-        });
-    },
- 
-    'click #logout': function(event) {
-        Meteor.logout(function(err){
-            if (err) {
-                throw new Meteor.Error("Logout failed");
-            }
-        })
-    }
-});
+
+
 	
 
 
