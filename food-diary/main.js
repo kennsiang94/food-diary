@@ -27,7 +27,6 @@ if(Meteor.isServer) {
 }
 
 Meteor.methods({
-<<<<<<< HEAD
 //Facebook login method calls
 Template.login.events({
     'click #facebook-login': function(event) {
@@ -47,8 +46,8 @@ Template.login.events({
     }
 });
 	
-=======
 
 
->>>>>>> origin/master
+
+
 })
