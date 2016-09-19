@@ -15,6 +15,10 @@ Template.hello.helpers({
 Template.hello.events({
   'click button'(event, instance) {
     // increment the counter when button is clicked
+<<<<<<< HEAD
     instance.counter.set(instance.counter.get() + 3);
+=======
+    instance.counter.set(instance.counter.get() + 2);
+>>>>>>> parent of aec87bd... Revert "Update main.js"
   },
 });
