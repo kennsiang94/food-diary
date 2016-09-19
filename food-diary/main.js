@@ -1,24 +1,14 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
-});
+MenuDishes = new Mongo.Collection('menuDishes');
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
+if(Meteor.isClient) {
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-<<<<<<< HEAD
-    instance.counter.set(instance.counter.get() + 3);
-=======
-    instance.counter.set(instance.counter.get() + 2);
->>>>>>> parent of aec87bd... Revert "Update main.js"
-  },
-});
+
+}
+
+if(Meteor.isServer) {
+
+	
+}
