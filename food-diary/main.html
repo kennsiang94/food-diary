@@ -1,9 +1,21 @@
 <head>
   <title>food-diary</title>
+  
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- W3S CSS-->
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <!--<h1>Welcome to Meteor!</h1>-->
 
   {{> hello}}
   {{> info}}
@@ -11,8 +23,10 @@
 </body>
 
 <template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+	
+		<!--<button>Click Me</button>
+		<p>You've pressed the button {{counter}} times.</p>
+	{{/if}}-->
 </template>
 
 <template name="login">
@@ -26,12 +40,28 @@
 </template>
 
 <template name="info">
-{{#if currentUser}}
-  <h2>Learn Meteor!</h2>
-  <ul>
+	{{#if currentUser}}
+		<h2>Hi there!</h2>
+			<ul class="nav nav-pills">
+				<li role="presentation" class="active"><a href="#">Dashboard</a></li>
+				<li role="presentation"><a href="#">Menu</a></li>
+				<li role="presentation"><a href="#">Promotions</a></li>
+				<li role="presentation"><a href="#">FAQs</a></li>
+				<li role="presentation"><a href="#">Checkout</a></li>
+			</ul>
+		<h3> Dashboard </h3>
+		
+	{{else}}
+		
+		<h1>Welcome to Food Diary!</h1>
+	
+	
+	
+  <!--<ul>
     <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
     <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
     <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
     <li><a href="https://facebook.com/markjrobby" target="_blank">See My Facebook</a></li>
-  </ul>
+  </ul> -->
+  {{/if}}
 </template>
