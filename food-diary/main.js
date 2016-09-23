@@ -1,6 +1,5 @@
 MenuDishes = new Mongo.Collection('menuDishes');
 UserDishes = new Mongo.Collection('userDishes'); 
-MenuDishes.insert({name: "Pork Ribs", price: 8.99, description: "Succulent pork ribs with premium black pepper sauce."})
 //fields for menuDishes: dish name, picture link, description, price 
 //fields for userDishes: dish name, tried counter, want to try, favourite, comments
 
