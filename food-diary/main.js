@@ -3,6 +3,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 MenuDishes = new Mongo.Collection('menuDishes');
 UserDishes = new Mongo.Collection('userDishes'); 
+MenuDishes.insert({Name: "Pork Ribs", Price: 8.99, Description: "Succulent pork ribs with premium black pepper sauce."})
 //fields for menuDishes: dish name, picture link, description, price 
 //fields for userDishes: dish name, tried counter, want to try, favourite, comments
 
