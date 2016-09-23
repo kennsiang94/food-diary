@@ -33,7 +33,6 @@ Meteor.methods({
         };
     },
 
-    ''
 
 //Favourite methods
     'addFav': function(dishName){
