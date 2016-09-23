@@ -1,11 +1,37 @@
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
-
 MenuDishes = new Mongo.Collection('menuDishes');
 UserDishes = new Mongo.Collection('userDishes'); 
 MenuDishes.insert({Name: "Pork Ribs", Price: 8.99, Description: "Succulent pork ribs with premium black pepper sauce."})
 //fields for menuDishes: dish name, picture link, description, price 
 //fields for userDishes: dish name, tried counter, want to try, favourite, comments
+
+Meteor.methods({
+
+    'addWanttoTry': function(dishName){
+        check(dishName, String);
+        var currentUserId = Meteor.userId();
+        if (currentUserId){
+            if (!UserDishes.findOne({name: dishName})){
+                UserDishes.insert({
+                    name: dishName,
+                    triedCounter: 0,
+                    wantToTry: true,
+                    fav: false,
+                    comments: [],
+                    createdBy: currentUserId,
+                })
+            }else{
+                UserDishes.update({createdBy: currentUserId, name: dishName},
+                                    {$set: {wantToTry: true}})
+            }
+        }
+    }
+
+
+
+
+});
+
+
 
 if(Meteor.isClient) {
 	Template.login.events({
@@ -27,7 +53,7 @@ if(Meteor.isClient) {
 });
 
 
-}
+};
 
 if(Meteor.isServer) {
 	//Facebook configuration settings
@@ -42,14 +68,4 @@ if(Meteor.isServer) {
 	});
 
 	
-}
-
-Meteor.methods({
-
-
-	
-
-
-
-
-})
+};
