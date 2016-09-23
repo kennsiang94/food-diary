@@ -5,11 +5,12 @@ UserDishes = new Mongo.Collection('userDishes');
 
 Meteor.methods({
 
-    'addWanttoTry': function(dishName){
+//Want To Try methods
+    'addWant': function(dishName){
         check(dishName, String);
         var currentUserId = Meteor.userId();
         if (currentUserId){
-            if (!UserDishes.findOne({name: dishName})){
+            if (!UserDishes.findOne({createdBy: currentUserId, name: dishName})){
                 UserDishes.insert({
                     name: dishName,
                     triedCounter: 0,
@@ -21,12 +22,84 @@ Meteor.methods({
             }else{
                 UserDishes.update({createdBy: currentUserId, name: dishName},
                                     {$set: {wantToTry: true}})
-            }
-        }
+            };
+        };
+    },
+
+    'findWant': function(){
+        var currentUserId = Meteor.userId();
+        if (currentUserId){
+            return UserDishes.find({createdBy: currentUserId, wantToTry: true});
+        };
+    },
+
+    ''
+
+//Favourite methods
+    'addFav': function(dishName){
+        check(dishName, String);
+        var currentUserId = Meteor.userId();
+        if (currentUserId){
+            if (!UserDishes.findOne({createdBy: currentUserId, name: dishName})){
+                UserDishes.insert({
+                    name: dishName,
+                    triedCounter: 1,
+                    wantToTry: false,
+                    fav: true,
+                    comments: [],
+                    createdBy: currentUserId,
+                })
+            }else{
+                var dish = UserDishes.findOne({createdBy: currentUserId, name: dishName});
+                UserDishes.update({createdBy: currentUserId, name: dishName},
+                                    {$set: {fav: true}});
+                if (dish.triedCounter == 0){
+                    UserDishes.update({createdBy: currentUserId, name: dishName},
+                                        {$inc: {triedCounter: 1}});                    
+                }
+            };
+        };
+    },
+
+    'findFav': function(){
+        var currentUserId = Meteor.userId();
+        if (currentUserId){
+            return UserDishes.find({createdBy: currentUserId, fav: true});
+        };
+    },
+
+//Past Dishes methods
+    'addPast': function(dishName){
+        check(dishName, String);
+        var currentUserId = Meteor.userId();
+        if (currentUserId){
+            if (!UserDishes.findOne({createdBy: currentUserId, name: dishName})){
+                UserDishes.insert({
+                    name: dishName,
+                    triedCounter: 1,
+                    wantToTry: false,
+                    fav: false,
+                    comments: [],
+                    createdBy: currentUserId,
+                })
+            }else{
+                UserDishes.update({createdBy: currentUserId, name: dishName},
+                                    {$inc: {triedCounter: 1}})
+            };
+        };
+    },
+
+    'findPast': function(){
+        var currentUserId = Meteor.userId();
+        if (currentUserId){
+            return UserDishes.find({createdBy: currentUserId, triedCounter: {$gt: 0}});
+        };
+    },
+    
+//Comments methods
+    'addComments': function(dishName, comment){
+        
     }
-
-
-
 
 });
 
