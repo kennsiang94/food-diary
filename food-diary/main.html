@@ -42,16 +42,17 @@
 <template name="info">
 	{{#if currentUser}}
 		<h2>Hi there!</h2>
+		
 			<ul class="nav nav-pills">
 				<li role="presentation" class="active"><a href="#">Dashboard</a></li>
 				<li role="presentation"><a href="#">Menu</a></li>
 				<li role="presentation"><a href="#">Promotions</a></li>
 				<li role="presentation"><a href="#">FAQs</a></li>
 				<li role="presentation"><a href="#">Checkout</a></li>
-				{{#each menuDishes}}
-					<li><img src={{pic}}/></li>
-				{{/each}}
 			</ul>
+			{{#each menuDishes}}
+				<img alt="Embedded Image" src={{pic}} />
+			{{/each}}
 		<h3> Dashboard </h3>
 		
 	{{else}}
